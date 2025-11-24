@@ -44,5 +44,5 @@ jobs:
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: ¡Felicidades Junior Dev!\n ✅Pasaste las pruebas lógicas.\n 🚀Listo para enviar a Producción.'
+              body: "¡Felicidades Junior Dev!\n ✅Pasaste las pruebas lógicas.\n 🚀Listo para enviar a Producción."
             })
