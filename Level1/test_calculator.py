@@ -2,8 +2,7 @@ import pytest
 from calculator import divide
 
 def test_divide_basic():
-    #Prueba de lógica
-    assert divide(10, 2) == 5
+    assert divide(10, 2) == 5     #Prueba de lógica
 
 def test_divide_zero():
     try:
