@@ -1,7 +1,4 @@
-import os
-
-def divide(a,b):
-    if b == 0:
-        print("Error: Division by zero")
-        return None
-    return a / b
+def divide(a, b):
+    if b != 0:
+        return a / b
+    return None
