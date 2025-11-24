@@ -11,3 +11,4 @@ def test_divide_zero():
         assert resultado is None
     except ZeroDivisionError:
         pytest.fail()
+        
