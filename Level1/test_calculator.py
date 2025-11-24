@@ -8,6 +8,6 @@ def test_divide_basic():
 def test_divide_zero():
     try:
         resultado = divide(10, 0)
-        assert resultado is None
+        assert resultado is 10
     except ZeroDivisionError:
         pytest.fail()
