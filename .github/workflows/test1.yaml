@@ -1,0 +1,48 @@
+name: The Broken Build Challenge
+
+on: [pull_request]
+
+jobs:
+  check-style:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+      - name: Install Linter
+        run: pip install flake8
+      - name: Run Linter
+        run: flake8 . --count --select=E9,F63,F7,F82,F401,E231 --show-source --statistics
+
+  run-tests:
+    needs: check-style
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+      - name: Install Pytest
+        run: pip install pytest
+      - name: Run Tests
+        run: pytest --tb=no -q --show-capture=no
+
+  congratulate:
+    needs: run-tests
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+    steps:
+      - name: Comment Success
+        uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: ¡Felicidades Junior Dev!\n ✅Pasaste las pruebas lógicas.\n 🚀Listo para enviar a Producción.'
+            })
